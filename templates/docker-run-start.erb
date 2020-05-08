@@ -22,4 +22,4 @@
   <% end %>
 <% end %>
 
-/usr/bin/<%= @docker_command %> start <% if ! @valid_detach %>-a<% end %> <%= @sanitised_title %> <% if @redirect_output != '' %> >@redirect_output 2>&1 <% end %>
+/usr/bin/<%= @docker_command %> start <% if ! @valid_detach %>-a<% end %> <%= @sanitised_title %> <% if @redirect_output != '' %> ><%= @redirect_output %> 2>&1 <% end %>
