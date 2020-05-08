@@ -123,6 +123,7 @@ define docker::run(
   Optional[Boolean] $disable_network                    = false,
   Optional[Boolean] $privileged                         = false,
   Optional[Boolean] $detach                             = undef,
+  Optional[Boolean] $redirect_output                    = undef,
   Variant[String,Array[String],Undef] $extra_parameters = undef,
   Optional[String] $systemd_restart                     = 'on-failure',
   Variant[String,Hash,Undef] $extra_systemd_parameters  = {},
@@ -196,6 +197,15 @@ define docker::run(
     }
   } else {
     $valid_detach = $detach
+  }
+
+  if $redirect_output == undef {
+    $valid_redirect_output = $service_provider_real ? {
+      'systemd' => false,
+      default   => $docker::params::redirect_output_in_init,
+    }
+  } else {
+    $valid_redirect_output = $redirect_output
   }
 
   $extra_parameters_array = any2array($extra_parameters)

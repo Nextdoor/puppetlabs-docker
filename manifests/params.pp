@@ -180,6 +180,7 @@ class docker::params {
       $package_ee_release            = $::lsbdistcodename
       $package_ee_repos              = $docker_ee_repos
       $package_ee_package_name       = $docker_ee_package_name
+      $redirect_output_in_init       = false
 
 
       if ($service_provider == 'systemd') {
@@ -222,6 +223,7 @@ class docker::params {
       $apt_source_pin_level        = undef
       $service_name                = $service_name_default
       $detach_service_in_init      = false
+      $redirect_output_in_init     = false
 
       if $use_upstream_package_source {
         $docker_group = $docker_group_default
@@ -277,6 +279,7 @@ class docker::params {
       $service_hasstatus                   = undef
       $service_hasrestart                  = undef
       $detach_service_in_init              = true
+      $redirect_output_in_init             = false
     }
     default: {
       $docker_group                        = $docker_group_default
@@ -309,6 +312,7 @@ class docker::params {
       $package_name                        = $docker_ce_package_name
       $service_name                        = $service_name_default
       $detach_service_in_init              = true
+      $redirect_output_in_init             = false
       $repo_opt                            = undef
       $nowarn_kernel                       = false
       $service_config                      = undef
